@@ -6,6 +6,7 @@ from banbu_client import BanguClient
 
 
 if __name__ == '__main__':
+    # spark-submit arguments
     params = {
         "name": "pi computer",
         "executor-cores": "2",
@@ -14,7 +15,7 @@ if __name__ == '__main__':
 
     client = BanguClient('http://172.172.172.165:8998')
 
-    py = '/Users/liutao/workspace/spark-solr-etl/pi.py'
+    py = '/Users/xxxxx/workspace/spark-solr-etl/pi.py'
     ret_json = client.submit(py, params=params)
     print('submit response: %s' % ret_json)
 
@@ -32,5 +33,3 @@ if __name__ == '__main__':
             break
         else:
             time.sleep(5)
-
-
