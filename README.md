@@ -44,7 +44,7 @@ params = {
 
 client = BanguClient('http://172.172.172.165:8998')
 
-py = '/Users/liutao/workspace/spark-solr-etl/pi.py'
+py = '/Users/xxxxx/workspace/spark-solr-etl/pi.py'
 ret_json = client.submit(py, params=params)
 print('submit response: %s' % ret_json)
 
