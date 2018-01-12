@@ -32,4 +32,4 @@ if __name__ == '__main__':
         if status == u'finished' or status == u'failed':
             break
         else:
-            time.sleep(5)
+            time.sleep(10)

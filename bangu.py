@@ -126,6 +126,8 @@ def _init_logger():
 
 
 def _run_spark_job(job_id, job_args):
+    proc = subprocess.Popen(job_args, stdout=subprocess.PIPE)
+
     job_name = job_args[job_args.index('--name') + 1]
     py_job = job_args[-1]
 
@@ -137,8 +139,6 @@ def _run_spark_job(job_id, job_args):
         status='running',
         end_time=0,
     ))
-
-    proc = subprocess.Popen(job_args, stdout=subprocess.PIPE)
 
     # out, err = proc.communicate()
     # return out.decode('utf-8')
@@ -208,7 +208,7 @@ def _jobs_from_store():
     conn = sqlite3.connect(spark_db_file)
     try:
         c = conn.cursor()
-        c.execute('''select job_id, name, status, py_file, start_time, end_time 
+        c.execute('''select job_id, name, status, py_file, start_time, end_time
             from spark_jobs order by start_time desc limit 20''')
         rows = c.fetchall()
 
@@ -290,4 +290,3 @@ if __name__ == '__main__':
         t.start()
 
     app.run(host='0.0.0.0', port=args.port, debug=False)
-
